@@ -4,7 +4,7 @@ import Camera from './Camera.vue';
 
 <template>
   <div>
-   
+   <Camera></Camera>
   </div>
 </template>
 

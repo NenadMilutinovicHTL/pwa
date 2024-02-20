@@ -34,6 +34,8 @@ const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
 
       <q-tabs align="left" class="gt-sm">
         <q-route-tab to="/" label="Home" />
+        <q-route-tab to="/camera" label="Camera" />
+        <q-route-tab to="/data" label="Data" />
         <q-route-tab to="/impressum" label="Impressum" />
       </q-tabs>
     </q-header>
@@ -41,7 +43,9 @@ const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
     <q-drawer v-model="leftDrawerOpen" side="left" bordered>
       <q-tabs vertical>
         <q-route-tab to="/" label="Home" icon="fa fa-home" />
-        <q-route-tab to="/impressum" label="Impressum" icon="fa fa-info" />
+        <q-route-tab to="/camera" label="Camera" icon="fa fa-info"/>
+        <q-route-tab to="/data" label="Data" icon="fa fa-info" />
+        <q-route-tab to="/impressum" label="Impressum" icon="fa fa-info"/>
       </q-tabs>
     </q-drawer>
     <q-page-container>
