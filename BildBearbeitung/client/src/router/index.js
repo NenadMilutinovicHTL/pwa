@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
-import Camera from '../views/Camera.vue'
 import DataView from '../views/DataView.vue'
 
 const router = createRouter({
@@ -21,12 +20,7 @@ const router = createRouter({
       path: '/impressum',
       name: 'impressum',
       component: AboutView,
-    },
-    {
-      path: '/camera',
-      name: 'camera',
-      component: Camera,
-    },
+    }
   ],
 });
 
