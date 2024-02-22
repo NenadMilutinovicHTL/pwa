@@ -5,11 +5,32 @@ const store = usePicturesStore();
 store.getPictures();
 
 const cols = [
-  { name: 'isOriginal', field: 'isOriginal', label: 'isOriginal', align: 'left' },
-  { name: 'timestamp', field: 'timestamp', label: 'timestamp', align: 'right' },
+  {
+    name: 'isOriginal',
+    field: 'isOriginal',
+    label: 'isOriginal',
+    align: 'left',
+  },
+  {
+    name: 'timestamp',
+    field: 'timestamp',
+    label: 'timestamp',
+    align: 'left',
+    width: '4%',
+  },
   { name: 'img', field: 'img', label: 'img', align: 'left' },
   { name: 'image', field: 'image', label: 'image', align: 'left' },
+  { name: 'delete', field: 'delete', label: 'Delete', align: 'left' },
 ];
+
+const formatPictures = (pictures) => {
+  return pictures.map((picture) => {
+    return {
+      ...picture,
+      img: picture.img ? picture.img.substring(0, 10) + '...' : '',
+    };
+  });
+};
 </script>
 
 <template>
@@ -18,7 +39,7 @@ const cols = [
       <q-table
         grid
         title="Pictures"
-        :rows="store.pictures"
+        :rows="formatPictures(store.pictures)"
         :columns="cols"
         row-key="name"
         :pagination="{ rowsPerPage: 10 }"
@@ -26,18 +47,32 @@ const cols = [
       >
       </q-table>
     </q-card>
-    <q-card>
+    <div class="container d-flex flex-column align-items-center">
       <q-table
-        title="Pictures"
-        :rows="store.pictures"
+        :rows="formatPictures(store.pictures)"
         :columns="cols"
-        row-key="name"
-        :pagination="{ rowsPerPage: 10 }"
-        class="gt-xs"
+        row-key="id"
+        title="Pictures"
       >
+        <template v-slot:body-cell-actions="props">
+          <q-td :props="props">
+            <q-btn
+              @click="store.deletePictures(props.row)"
+              class="glossy"
+              icon=""
+              rounded
+              color="negative"
+              label="Delete"
+            />
+          </q-td>
+        </template>
       </q-table>
-    </q-card>
+    </div>
   </div>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.tablecard {
+  background-color: #5ecedc;
+}
+</style>

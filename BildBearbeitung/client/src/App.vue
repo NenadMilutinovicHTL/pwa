@@ -28,7 +28,7 @@ const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
           <q-avatar>
             <img src="/public/Icon.png" />
           </q-avatar>
-          Bildbearbeitung
+          Bildbearbeitung PWA
         </q-toolbar-title>
       </q-toolbar>
 
@@ -42,7 +42,7 @@ const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
     <q-drawer v-model="leftDrawerOpen" side="left" bordered>
       <q-tabs vertical>
         <q-route-tab to="/" label="Home" icon="fa fa-home" />
-        <q-route-tab to="/data" label="Data" icon="fa fa-info" />
+        <q-route-tab to="/data" label="Data" icon="fa-solid fa-database" />
         <q-route-tab to="/impressum" label="Impressum" icon="fa fa-info"/>
       </q-tabs>
     </q-drawer>

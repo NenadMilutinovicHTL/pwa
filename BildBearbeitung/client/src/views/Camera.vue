@@ -1,9 +1,15 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { usePicturesStore } from '../stores/picturesStore.js';
+
+let store = usePicturesStore();
 
 const canvas = ref(null);
 const video = ref(null);
 const ctx = ref(null);
+
+let base64 = ref(null);
+let imagename = ref(null);
 
 const constraints = ref({
   audio: false,
@@ -26,7 +32,6 @@ onMounted(async () => {
 function SetStream(stream) {
   video.value.srcObject = stream;
   video.value.play();
-
   requestAnimationFrame(Draw);
 }
 
@@ -45,7 +50,20 @@ function TakePicture() {
   var link = document.createElement('a');
   link.download = `vue-cam-${new Date().toISOString()}.png`;
   link.href = canvas.value.toDataURL();
+
+  base64.value = canvas.value.toDataURL();
+  imagename.value = `vue-cam-${new Date().toISOString()}.png`;
+
   link.click();
+
+  let picture = {
+    isOriginal: false,
+    timestamp: new Date(),
+    img: base64.value,
+    image: imagename.value,
+  };
+  
+  store.postPicture(picture);
 }
 </script>
 
@@ -88,7 +106,7 @@ function TakePicture() {
   height: 480px;
 }
 
-.picBtn{
+.picBtn {
   background-color: #5ecedc;
 }
 </style>

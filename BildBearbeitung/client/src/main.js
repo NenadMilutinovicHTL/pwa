@@ -21,4 +21,5 @@ app.use(Quasar, {
   iconSet: quasarIconSet,
 });
 
+
 app.mount('#app');
