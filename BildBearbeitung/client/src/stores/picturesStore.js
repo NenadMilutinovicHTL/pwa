@@ -6,43 +6,25 @@ export const usePicturesStore = defineStore('picturesStore', () => {
   const pictures = ref([]);
 
   const getPictures = async () => {
-  const result = await axios.get("api/picture/pictures");
-  pictures.value = result.data;
+    const result = await axios.get('api/picture/');
+    pictures.value = result.data;
   };
 
-  // const getPictures = async () => {
-  //   pictures.value = [
-  //     {
-  //       isOriginal: 'false',
-  //       timestamp: '10.06.2023 07:20',
-  //       img: ['binary data'],
-  //       image: 'house.png',
-  //     },
-  //     {
-  //       isOriginal: 'true',
-  //       timestamp: '10.06.2023 07:40',
-  //       img: ['binary data'],
-  //       image: 'fox.png',
-  //     },
-  //     {
-  //       isOriginal: 'false',
-  //       timestamp: '10.06.2023 07:43',
-  //       img: ['binary data'],
-  //       image: 'cat.png',
-  //     },
-  //     {
-  //       isOriginal: 'true',
-  //       timestamp: '10.06.2023 07:45',
-  //       img: ['binary data'],
-  //       image: 'friends.png',
-  //     },
-  //   ];
-  // };
-
-  const postPicture = async (picture) => {
-    console.log(picture);
-    await axios.post('api/picture/insert', picture);
+  const postPictures = async (picture) => {
+    await axios.post('api/picture/', picture);
+    getPictures();
   };
 
-  return { pictures, getPictures, postPicture, pictures };
+  const deletePictures = async (picture) => {
+    await axios.delete(`api/picture/${picture.id}`);
+    getPictures();
+  };
+
+  const updatePictures = async (picture, imagename) => {
+    picture.image = imagename;
+    await axios.patch(`api/picture/${picture.id}`, picture);
+    getPictures();
+  };
+
+  return { getPictures, postPictures, deletePictures, pictures, updatePictures };
 });

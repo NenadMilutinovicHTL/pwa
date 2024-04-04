@@ -12,3 +12,22 @@ export const postPictures = async (isOriginal, timestamp, img, image) => {
   );
   return rows[0];
 };
+
+export const deletePictures = async (id) => {
+  const { rows } = await query(
+    `delete from pictures
+    where id = $1 returning *`,
+    [id]
+  );
+  return rows;
+};
+
+export const updatePictures = async (obj, id) => {
+  const { rows } = await query(
+    `update pictures
+    set image = $1
+    where id = $2 returning *`,
+    [obj, id]
+  );
+  return rows;
+};

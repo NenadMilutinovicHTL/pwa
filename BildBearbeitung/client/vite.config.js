@@ -20,9 +20,28 @@ export default defineConfig({
     vue({
       template: { transformAssetUrls },
     }),
-    VitePWA({ registerType: manifest }),
-    quasar({
-      sassVariables: 'src/quasar-variables.sass',
+    VitePWA({
+      manifest,
+      includeAssets: ['/*.{js,css,html,jpg,ico,png,ttf,woff2}'],
+      workbox: {
+        mode: 'development',
+        runtimeCaching: [
+          {
+            urlPattern: '/api',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'Bildbearbeitung',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 1, // <== 1 day
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
     }),
   ],
   resolve: {

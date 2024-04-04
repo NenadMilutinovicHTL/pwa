@@ -9,6 +9,7 @@ export default {
   theme_color: '#ffffff',
   id: '/',
   icons: [
-  { src: '/Icon.png', sizes: '192x192', type: 'image/png' }
+  { src: '/Icon.png', sizes: '192x192', type: 'image/png' },
+  { src: '/favicon.ico', sizes: '32x32', type: 'image/png' },
   ],
   };

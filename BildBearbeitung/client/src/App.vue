@@ -3,7 +3,6 @@ import { ref } from 'vue';
 
 const leftDrawerOpen = ref(false);
 
-
 const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
 </script>
 
@@ -26,7 +25,7 @@ const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
         />
         <q-toolbar-title class="raleway">
           <q-avatar>
-            <img src="/public/Icon.png" />
+            <img src="/Icon.png" />
           </q-avatar>
           Bildbearbeitung PWA
         </q-toolbar-title>
@@ -36,6 +35,7 @@ const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
         <q-route-tab to="/" label="Home" />
         <q-route-tab to="/data" label="Data" />
         <q-route-tab to="/impressum" label="Impressum" />
+        <q-route-tab to="/maps" label="Maps" />
       </q-tabs>
     </q-header>
 
@@ -43,7 +43,7 @@ const toggleLeftDrawer = () => (leftDrawerOpen.value = !leftDrawerOpen.value);
       <q-tabs vertical>
         <q-route-tab to="/" label="Home" icon="fa fa-home" />
         <q-route-tab to="/data" label="Data" icon="fa-solid fa-database" />
-        <q-route-tab to="/impressum" label="Impressum" icon="fa fa-info"/>
+        <q-route-tab to="/impressum" label="Impressum" icon="fa fa-info" />
       </q-tabs>
     </q-drawer>
     <q-page-container>
